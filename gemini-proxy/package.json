@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 {
   "name": "gemini-proxy",
   "version": "1.0.0",
   "private": true
 }
+=======
+{
+  "name": "gemini-proxy",
+  "version": "1.0.0",
+  "private": true
+}
+>>>>>>> 84ced79f2133a0cb4036d60f76773971a5ffd6b5
