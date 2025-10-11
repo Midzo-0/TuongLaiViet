@@ -1,12 +1,10 @@
-// api/gemini.js
 export default async function handler(req, res) {
-  // ✅ Cho phép CORS để frontend truy cập
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
-    return res.status(204).end(); // phản hồi preflight
+    return res.status(204).end();
   }
 
   if (req.method !== "POST") {
@@ -36,13 +34,8 @@ export default async function handler(req, res) {
     );
 
     const data = await response.json();
-    const analysis =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "⚠️ Không có phản hồi từ Gemini.";
-
-    res.status(200).json({ analysis });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
+    res.status(200).json({ result: data });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 }
