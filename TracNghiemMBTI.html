@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Trắc nghiệm MBTI – Tương Lai Việt</title>
+<link rel="stylesheet" href="./style.css">
+<style>
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1b2340;
+  --muted: #6d738c;
+  --accent: #2747d9;
+  --accent-strong: #1f3cb8;
+  --accent-soft: #e6ecff;
+  --line: #e2e7f3;
+  --shadow: 0 18px 40px rgba(20, 32, 67, 0.12);
+  --shadow-soft: 0 12px 26px rgba(20, 32, 67, 0.09);
+}
+body {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 960px;
+  margin: 48px auto;
+  padding: 0 24px 48px;
+}
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--text);
+  font-weight: 700;
+}
+.card {
+  background: var(--surface);
+  border-radius: 22px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+/* ===== Polished form (nameCard) ===== */
+#nameCard h3 {
+  margin: 0 0 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+#nameCard .title-sub {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+#nameCard .form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+#nameCard .form-field { grid-column: span 12; }
+#nameCard .form-field.sm { grid-column: span 6; }
+@media (min-width: 720px) {
+  #nameCard .form-field.name { grid-column: span 6; }
+  #nameCard .form-field.sm { grid-column: span 3; }
+}
+#nameCard .form-field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2a3152;
+}
+#nameCard .field {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0 12px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+#nameCard .field:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(39,71,217,.12);
+}
+#nameCard .field input,
+#nameCard .field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  padding: 12px 4px;
+  width: 100%;
+}
+#nameCard .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+#nameCard .name-chip { background: var(--accent-soft); color: var(--accent-strong); padding: 6px 12px; border-radius: 999px; font-size: .88rem; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+#nameCard .name-chip:hover { background: rgba(39,71,217,.15); transform: translateY(-1px); }
+#nameCard .form-actions { display: flex; justify-content: center; margin-top: 16px; }
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-primary,
+.btn-secondary {
+  border: none;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-primary {
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  box-shadow: 0 14px 32px rgba(39, 71, 217, 0.24);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(39, 71, 217, 0.28);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 26px rgba(39, 71, 217, 0.26);
+}
+.btn-secondary {
+  background: #eef1f8;
+  color: #32405e;
+  box-shadow: 0 6px 18px rgba(27, 35, 64, 0.08);
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: #e3e7f3;
+}
+.btn-secondary:active {
+  transform: translateY(0);
+}
+.optionBtn {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, color 0.28s ease;
+  text-align: left;
+}
+.optionBtn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(39, 71, 217, 0.12);
+  transform: translateY(-2px);
+}
+.optionBtn.selected {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(39, 71, 217, 0.24);
+  transform: translateY(-2px);
+  border-color: transparent;
+}
+.option-number {
+  background: var(--accent-soft);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: var(--accent-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.optionBtn.selected .option-number {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.option-label {
+  flex: 1;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.optionBtn.selected .option-label {
+  color: #fff;
+}
+#progressBar {
+  height: 8px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  border-radius: 10px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.quiz-card {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.quiz-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.quiz-progress #progressText {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.quiz-question {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.quiz-question h4 {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.quiz-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+.quiz-actions .btn-primary,
+.quiz-actions .btn-secondary {
+  flex: 1;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quiz-message {
+  margin: 0;
+  color: #d65c5c;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.result-card {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.result-header {
+  background: linear-gradient(120deg, #1e2640 0%, #2f3f72 100%);
+  color: #fff;
+  padding: 28px 32px 24px;
+  display: grid;
+  gap: 16px;
+}
+.result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.result-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.result-chip__value {
+  display: inline-flex;
+  gap: 6px;
+  font-size: 1.45rem;
+  letter-spacing: 3px;
+}
+.result-chip__value span {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 4px 9px;
+}
+.result-persona__label {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  letter-spacing: 0.6px;
+}
+.result-persona__name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.result-intro {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+.ai-box {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  background: var(--surface);
+  border-radius: 20px;
+  margin: 24px 32px;
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(20, 32, 67, 0.08);
+  position: relative;
+}
+.ai-box::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 20px 0 0 20px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+}
+.ai-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ai-box .ai-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.ai-box .ai-loading::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid rgba(39, 71, 217, 0.18);
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+.ai-content {
+  display: grid;
+  gap: 18px;
+}
+.ai-content h4 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.08rem;
+  position: relative;
+  padding-left: 14px;
+}
+.ai-content h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 60%;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+}
+.ai-content p {
+  margin: 0;
+  color: #39425c;
+  line-height: 1.68;
+}
+.ai-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.ai-content li {
+  position: relative;
+  padding: 10px 14px 10px 20px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: #27314d;
+  line-height: 1.58;
+}
+.ai-content li::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 14px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.result-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 32px 32px;
+  justify-content: flex-end;
+}
+.result-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.result-btn.primary {
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(39, 71, 217, 0.26);
+}
+.result-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(39, 71, 217, 0.32);
+}
+.result-btn.primary:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 20px rgba(39, 71, 217, 0.28);
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@media (max-width: 600px) {
+  .card {
+    padding: 22px;
+  }
+  .ai-box {
+    margin: 0 20px 20px;
+    padding: 22px;
+  }
+  .result-header {
+    padding: 24px;
+  }
+  .result-actions {
+    padding: 0 24px 24px;
+    justify-content: flex-start;
+  }
+}
+/* ===== name card ===== */
+#nameCard {
+  position: relative;
+  display: grid;
+  gap: 24px;
+  padding: 32px;
+  background: var(--surface);
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+#nameCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(39, 71, 217, 0.08), rgba(39, 71, 217, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+#nameCard.ready::before {
+  opacity: 1;
+}
+#nameCard > * {
+  position: relative;
+  z-index: 1;
+}
+.name-accent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.accent-badge {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--accent-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--accent-strong);
+  font-size: 0.9rem;
+}
+.sparkle {
+  display: none;
+}
+.profile {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.avatar {
+  width: 78px;
+  height: 78px;
+  border-radius: 22px;
+  background: linear-gradient(140deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 16px 36px rgba(39, 71, 217, 0.24);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+#nameCard.ready .avatar {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(39, 71, 217, 0.28);
+}
+.input-wrap {
+  position: relative;
+}
+#userName {
+  width: 100%;
+  padding: 18px 16px 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#userName:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(39, 71, 217, 0.12);
+}
+.floating-label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  pointer-events: none;
+}
+#userName:focus + .floating-label,
+#userName.not-empty + .floating-label {
+  transform: translateY(-18px) scale(0.92);
+  opacity: 0.8;
+}
+.name-sub {
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+.name-hint {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.hint-chips {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.chip {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.chip:hover {
+  transform: translateY(-1px);
+  background: rgba(39, 71, 217, 0.16);
+}
+.dots {
+  display: none;
+}
+#startBtn {
+  margin-top: 8px;
+  padding: 14px 20px;
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(39, 71, 217, 0.24);
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#startBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(39, 71, 217, 0.28);
+}
+#startBtn.pulse {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+#startBtn.launching {
+  transform: scale(0.98) translateY(-4px);
+  transition: transform 0.18s ease;
+}
+#startBtn.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  background: #dbe2ff;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 10px 24px rgba(39, 71, 217, 0.16); }
+  50% { box-shadow: 0 18px 42px rgba(39, 71, 217, 0.22); }
+  100% { box-shadow: 0 10px 24px rgba(39, 71, 217, 0.16); }
+}
+#nameCard.launch {
+  transform: scale(0.98);
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  opacity: 0.98;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  60% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+#nameCard.shake {
+  animation: shake 350ms ease;
+}
+/* Giãn cách các ô nhập thông tin */
+.profile > div {
+  margin-bottom: 14px;
+}
+
+@media (min-width: 700px) {
+  .profile {
+    display: flex;
+    gap: 20px;
+  }
+  .profile > div {
+    margin-bottom: 0;
+  }
+}
+
+/* Khoảng cách giữa các lựa chọn câu trả lời */
+.optionBtn {
+  margin-bottom: 12px;
+}
+
+/* Nút hành động trong kết quả */
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.result-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.result-actions .btn-retry {
+  background: #eef2ff;
+  color: #2a2a5a;
+}
+
+.result-actions .btn-retry:hover {
+  background: #dce3ff;
+  transform: translateY(-2px);
+}
+
+.result-actions .btn-share {
+  background: linear-gradient(120deg, #2575fc, #6a11cb);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(39, 71, 217, 0.25);
+}
+
+.result-actions .btn-share:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(39, 71, 217, 0.3);
+}
+
+</style>
+</head>
+<body>
+ <header>
+        <h1><a href="./index.html">Tương Lai Việt</a></h1>
+        <nav id="desktop-nav">
+            <ul>
+                <li><a href="./index.html">Trang Chủ</a></li>
+                <li><a href="./Nganhnghe.html">Ngành Nghề</a></li>
+                <li><a href="./Kynang.html">Kỹ Năng</a></li>
+                <li><a class="active" href="./Tracnghiem.html">Trắc Nghiệm</a></li>
+                <li><a href="./Lienhe.html">Liên Hệ</a></li>
+            </ul>
+        </nav>
+        <div id="hamburger-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <nav id="mobile-menu-container">
+        <div class="close-icon"><i class="fas fa-times"></i></div>
+        <ul class="nav-list">
+            <li><a href="./index.html">Trang Chủ</a></li>
+            <li><a href="./Nganhnghe.html">Ngành Nghề</a></li>
+            <li><a href="./Kynang.html">Kỹ Năng</a></li>
+            <li><a href="./tracnghiem.html">Trắc Nghiệm</a></li>
+            <li><a href="./Lienhe.html">Liên Hệ</a></li>
+        </ul>
+    </nav>
+<div class="container">
+  <h1>Trắc nghiệm MBTI – Khám phá tính cách và nghề nghiệp</h1>
+
+  <!-- ====== THẺ NHẬP THÔNG TIN ====== -->
+  <div class="card" id="nameCard">
+    <h3>Nhập thông tin trước khi bắt đầu</h3>
+    <p class="title-sub">Điền ngắn gọn để cá nhân hóa kết quả MBTI và gợi ý nghề nghiệp.</p>
+    <div class="form-grid">
+      <div class="form-field name">
+        <label for="userName">Tên</label>
+        <div class="field">
+          <input id="userName" type="text" placeholder="Ví dụ: Minh" autocomplete="name" />
+        </div>
+        <div class="chips" aria-hidden="true">
+          <span class="name-chip">Lan</span>
+          <span class="name-chip">Tuấn</span>
+          <span class="name-chip">Minh</span>
+        </div>
+      </div>
+      <div class="form-field sm">
+        <label for="userAge">Tuổi</label>
+        <div class="field">
+          <input id="userAge" type="number" min="10" max="80" placeholder="18" />
+        </div>
+      </div>
+      <div class="form-field sm">
+        <label for="userGender">Giới tính</label>
+        <div class="field">
+          <select id="userGender">
+            <option value="">-- Chọn --</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+            <option value="Không tiết lộ">Không tiết lộ</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button id="startBtn" class="btn-primary">Bắt đầu</button>
+    </div>
+  </div>
+
+  <!-- ====== THẺ LÀM BÀI ====== -->
+  <div class="card" id="quizCard" style="display:none">
+    <div id="progressWrap" style="margin-bottom:12px">
+      <div id="progressText" style="font-size:0.95rem;color:#666">Câu 1 / 30</div>
+      <div style="height:8px;background:#e9e9e9;border-radius:8px;margin-top:8px">
+        <div id="progressBar" style="width:0%;height:8px;background:linear-gradient(90deg,#6a11cb,#2575fc);border-radius:8px"></div>
+      </div>
+    </div>
+    <div id="questionCard"></div>
+    <div style="margin-top:16px;display:flex;gap:10px">
+      <button id="prevBtn" style="flex:1;background:#eee;border:none;padding:10px;border-radius:8px">Quay lại</button>
+      <button id="nextBtn" style="flex:1;background:#2575fc;color:#fff;border:none;padding:10px;border-radius:8px">Tiếp</button>
+    </div>
+    <p id="message" style="color:#888;margin-top:10px"></p>
+  </div>
+
+  <!-- ====== THẺ KẾT QUẢ ====== -->
+  <div class="card" id="resultCard" style="display:none">
+    <h2>Kết quả trắc nghiệm của bạn</h2>
+    <p><strong>Tên:</strong> <span id="resultName"></span></p>
+    <p><strong>Tuổi:</strong> <span id="resultAge"></span></p>
+    <p><strong>Giới tính:</strong> <span id="resultGender"></span></p>
+    <p><strong>MBTI:</strong> <span id="mbtiCode"></span></p>
+    <h3>Kết quả phân tích AI (cá nhân hóa):</h3>
+    <div class="ai-box" id="aiAdvice"></div>
+  </div>
+</div>
+
+<script src="chatbot.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+/* ====== Câu hỏi ====== */
+const QUESTIONS = [
+  {text:"Tôi thích được ở giữa đám đông và gặp gỡ nhiều người mới.", dim:"EI", polarity:1},
+  {text:"Tôi cảm thấy tràn đầy năng lượng sau khi giao tiếp xã hội.", dim:"EI", polarity:1},
+  {text:"Tôi thường chủ động bắt chuyện với người lạ.", dim:"EI", polarity:1},
+  {text:"Tôi thích suy nghĩ trước khi chia sẻ ý kiến.", dim:"EI", polarity:-1},
+  {text:"Tôi cảm thấy mệt mỏi khi phải giữ nhiều cuộc hội thoại xã hội.", dim:"EI", polarity:-1},
+  {text:"Tôi thường cần thời gian một mình để nạp lại năng lượng.", dim:"EI", polarity:-1},
+  {text:"Tôi thích các hoạt động nhóm hơn làm một mình.", dim:"EI", polarity:1},
+  {text:"Tôi thường nói thẳng suy nghĩ ra thay vì cân nhắc lâu.", dim:"EI", polarity:1},
+  {text:"Tôi chú ý đến các chi tiết thực tế hơn là ý tưởng lý thuyết.", dim:"SN", polarity:1},
+  {text:"Tôi thường dựa vào dữ liệu và trải nghiệm hơn là trực giác.", dim:"SN", polarity:1},
+  {text:"Tôi thích khi mọi thứ rõ ràng, thực tế và có thể đo lường được.", dim:"SN", polarity:1},
+  {text:"Tôi quan tâm đến các khả năng tương lai và ý tưởng trừu tượng.", dim:"SN", polarity:-1},
+  {text:"Tôi thích suy nghĩ về ý nghĩa ẩn sau các sự vật.", dim:"SN", polarity:-1},
+  {text:"Tôi thường nghĩ về các xu hướng và bối cảnh lớn hơn.", dim:"SN", polarity:-1},
+  {text:"Tôi ưu tiên dữ liệu, quy trình thay vì cảm hứng.", dim:"SN", polarity:1},
+  {text:"Tôi bị hấp dẫn bởi các khái niệm mới và sáng tạo.", dim:"SN", polarity:-1},
+  {text:"Tôi đưa ra quyết định dựa trên tiêu chí logic hơn cảm xúc.", dim:"TF", polarity:1},
+  {text:"Tôi dễ dàng tách cảm xúc cá nhân khi phân tích vấn đề.", dim:"TF", polarity:1},
+  {text:"Tôi ưu tiên tính công bằng và nguyên tắc hơn là cảm nhận cá nhân.", dim:"TF", polarity:1},
+  {text:"Tôi quan tâm nhiều đến cảm xúc và nhu cầu của người khác khi ra quyết định.", dim:"TF", polarity:-1},
+  {text:"Tôi tin rằng sự đồng cảm quan trọng trong môi trường làm việc.", dim:"TF", polarity:-1},
+  {text:"Tôi thường cân nhắc tác động cảm xúc đến người khác trước khi đưa ra lựa chọn.", dim:"TF", polarity:-1},
+  {text:"Tôi đánh giá quyết định dựa trên kết quả và hiệu suất.", dim:"TF", polarity:1},
+  {text:"Tôi thấy việc duy trì hòa hợp tập thể quan trọng.", dim:"TF", polarity:-1},
+  {text:"Tôi thích mọi thứ được sắp xếp và có kế hoạch rõ ràng.", dim:"JP", polarity:1},
+  {text:"Tôi cảm thấy thoải mái khi lịch trình được thiết lập trước.", dim:"JP", polarity:1},
+  {text:"Tôi thích hoàn thành công việc trước hạn chứ không làm vào phút cuối.", dim:"JP", polarity:1},
+  {text:"Tôi thích ứng và linh hoạt, thường để các kế hoạch mở.", dim:"JP", polarity:-1},
+  {text:"Tôi thường để ý đến các cơ hội tự phát hơn là tuân theo kế hoạch.", dim:"JP", polarity:-1},
+  {text:"Tôi thấy thoải mái với sự bất định và điều chỉnh khi cần.", dim:"JP", polarity:-1}
+];
+const SCORE_MAP = [-2,-1,0,1,2];
+const OPTION_LABELS = ["Hoàn toàn không đồng ý","Không đồng ý","Trung lập","Đồng ý","Hoàn toàn đồng ý"];
+
+let currentIndex = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let user = { name:"", age:"", gender:"" };
+
+/* DOM */
+const nameCard=document.getElementById("nameCard");
+const quizCard=document.getElementById("quizCard");
+const resultCard=document.getElementById("resultCard");
+const questionCard=document.getElementById("questionCard");
+const aiAdviceEl=document.getElementById("aiAdvice");
+const resultName=document.getElementById("resultName");
+const resultAge=document.getElementById("resultAge");
+const resultGender=document.getElementById("resultGender");
+const mbtiCodeEl=document.getElementById("mbtiCode");
+
+/* ====== Bắt đầu ====== */
+document.getElementById("startBtn").onclick=()=>{
+  const name=document.getElementById("userName").value.trim();
+  const age=document.getElementById("userAge").value.trim();
+  const gender=document.getElementById("userGender").value.trim();
+
+  if(!name){alert("Vui lòng nhập tên.");return;}
+  if(!age||isNaN(+age)||+age<10||+age>80){alert("Vui lòng nhập tuổi hợp lệ (10-80).");return;}
+  if(!gender){alert("Vui lòng chọn giới tính.");return;}
+
+  user={name,age,gender};
+  nameCard.style.display="none";
+  quizCard.style.display="block";
+  renderQuestion(0);
+};
+
+// Quick fill chips
+document.querySelectorAll('#nameCard .name-chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    const input=document.getElementById('userName');
+    input.value=chip.textContent.trim();
+    input.focus();
+  });
+});
+
+function renderQuestion(i){
+  const q=QUESTIONS[i];
+  document.getElementById("progressText").textContent=`Câu ${i+1} / ${QUESTIONS.length}`;
+  document.getElementById("progressBar").style.width=((i+1)/QUESTIONS.length*100)+"%";
+  const options=OPTION_LABELS.map((label,idx)=>{
+    const selected=answers[i]===idx?"selected":"";
+    return `<button class="optionBtn ${selected}" data-val="${idx}">
+      <div class="option-number">${idx+1}</div>
+      <div class="option-label">${label}</div>
+    </button>`;
+  }).join("");
+  questionCard.innerHTML=`<h4>${q.text}</h4>${options}`;
+  questionCard.querySelectorAll(".optionBtn").forEach(btn=>{
+    btn.onclick=()=>{
+      questionCard.querySelectorAll(".optionBtn").forEach(b=>b.classList.remove("selected"));
+      btn.classList.add("selected");
+      answers[i]=parseInt(btn.dataset.val);
+    };
+  });
+}
+
+/* ====== Nút Tiếp / Quay lại ====== */
+document.getElementById("nextBtn").onclick=async()=>{
+  if(answers[currentIndex]===null){
+    document.getElementById("message").textContent="Vui lòng chọn câu trả lời.";
+    return;
+  }
+  document.getElementById("message").textContent="";
+  if(currentIndex<QUESTIONS.length-1){currentIndex++;renderQuestion(currentIndex);}
+  else{
+    const mbti=computeMBTI();
+    quizCard.style.display="none";
+    resultCard.style.display="block";
+    resultName.textContent=user.name;
+    resultAge.textContent=user.age;
+    resultGender.textContent=user.gender;
+    mbtiCodeEl.textContent=mbti;
+
+    aiAdviceEl.innerHTML = `<div class="ai-loading">🤖 AI đang phân tích kết quả của bạn...</div>`;
+    const response=await callGemini(mbti,user,answers);
+    aiAdviceEl.innerHTML = `<div class="ai-content">${marked.parse(response)}</div>`;
+    aiAdviceEl.classList.add("visible");
+
+    saveAllToFirestore(user,answers,mbti,response);
+  }
+};
+document.getElementById("prevBtn").onclick=()=>{
+  if(currentIndex>0){currentIndex--;renderQuestion(currentIndex);}
+};
+
+/* ====== Tính MBTI ====== */
+function computeMBTI(){
+  const sums={EI:0,SN:0,TF:0,JP:0};
+  QUESTIONS.forEach((q,idx)=>{
+    const v=SCORE_MAP[answers[idx]];
+    sums[q.dim]+=q.polarity*v;
+  });
+  return (sums.EI>=0?'E':'I')+(sums.SN>=0?'S':'N')+(sums.TF>=0?'T':'F')+(sums.JP>=0?'J':'P');
+}
+
+/* ====== Gọi Gemini API (qua Proxy Vercel) ====== */
+const PROXY_URL="https://gemini-proxy-ashy-two.vercel.app/api/gemini";
+
+async function callGemini(mbti,user,answersArr){
+  try{
+    const res=await fetch(PROXY_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        mbtiCode:mbti,
+        user:{name:user.name,age:user.age,gender:user.gender},
+        answers:answersArr
+      })
+    });
+    const data=await res.json();
+    if(!res.ok) return `❌ Lỗi AI: ${res.status} – ${data.error||"Không xác định"}`;
+    return data?.result || "⚠️ Không có phản hồi từ AI.";
+  }catch(e){
+    console.error(e);
+    return `❌ Lỗi mạng: ${e.message}`;
+  }
+}
+
+/* ====== Firebase Firestore ====== */
+import("https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js").then(({initializeApp})=>{
+  import("https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js").then(({getFirestore,collection,addDoc,doc,setDoc,serverTimestamp})=>{
+    const firebaseConfig={
+      apiKey:"AIzaSyD7pbUtLE0w23EiH-bMEfTwASnxzSLAa",
+      authDomain:"tuonglaiviet-c51d9.firebaseapp.com",
+      projectId:"tuonglaiviet-c51d9",
+    };
+    const app=initializeApp(firebaseConfig);
+    const db=getFirestore(app);
+
+    async function createOrUpdateUser(u){
+      const userRef=doc(db,"users",u.name);
+      await setDoc(userRef,{
+        name:u.name,
+        age:u.age,
+        gender:u.gender,
+        createdAt:serverTimestamp(),
+        lastLogin:serverTimestamp()
+      },{merge:true});
+      return u.name;
+    }
+
+    async function saveQuiz(userId,answers,mbti,aiText){
+      await addDoc(collection(db,"quiz_results"),{
+        userId,
+        answers,
+        score:mbti,
+        recommendations:aiText,
+        createdAt:serverTimestamp()
+      });
+    }
+
+    window.saveAllToFirestore=async(u,answers,mbti,aiText)=>{
+      try{
+        const userId=await createOrUpdateUser(u);
+        await saveQuiz(userId,answers,mbti,aiText);
+        console.log("✅ Lưu Firestore đầy đủ (users + quiz_results)");
+      }catch(e){
+        console.error("❌ Lỗi lưu Firestore:",e);
+      }
+    };
+  });
+});
+// ===== Thêm nút "Làm lại" và "Chia sẻ" =====
+const resultActions = document.createElement("div");
+resultActions.className = "result-actions";
+
+const retryBtn = document.createElement("button");
+retryBtn.className = "btn-retry";
+retryBtn.textContent = "🔄 Làm lại bài trắc nghiệm";
+
+const shareBtn = document.createElement("button");
+shareBtn.className = "btn-share";
+shareBtn.textContent = "🔗 Chia sẻ kết quả";
+
+resultActions.appendChild(retryBtn);
+resultActions.appendChild(shareBtn);
+resultCard.appendChild(resultActions);
+
+// 👉 Xử lý nút "Làm lại"
+retryBtn.onclick = () => {
+  if (confirm("Bạn có chắc muốn làm lại bài trắc nghiệm?")) {
+    location.reload();
+  }
+};
+
+// 👉 Xử lý nút "Chia sẻ kết quả"
+shareBtn.onclick = async () => {
+  try {
+    const name = encodeURIComponent(user.name);
+    const age = encodeURIComponent(user.age);
+    const mbti = encodeURIComponent(mbtiCodeEl.textContent);
+    const advice = encodeURIComponent(aiAdviceEl.innerText.slice(0, 200)); // lấy tóm tắt 200 ký tự
+    const time = new Date().toLocaleString("vi-VN");
+
+    const shareURL = `${window.location.origin}${window.location.pathname}?name=${name}&age=${age}&mbti=${mbti}&t=${encodeURIComponent(time)}&advice=${advice}`;
+    await navigator.clipboard.writeText(shareURL);
+
+    alert("✅ Đã sao chép liên kết chia sẻ vào bộ nhớ tạm!");
+  } catch (e) {
+    console.error(e);
+    alert("❌ Không thể tạo liên kết chia sẻ!");
+  }
+};
+</script>
+</body>
+</html>

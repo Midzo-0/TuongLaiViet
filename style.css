@@ -1,0 +1,1553 @@
+@font-face {
+    font-family: 'SFProText';
+    src: url('fonts/SFProText-Bold.woff2') format('woff2'),
+        url('fonts/SFProText-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SFProDisplay';
+    src: url('fonts/SFProDisplay-Bold.woff2') format('woff2'),
+        url('fonts/SFProDisplay-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SFProDisplay';
+    src: url('fonts/SFProDisplay-Semibold.woff2') format('woff2'),
+        url('fonts/SFProDisplay-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SFProText';
+    src: url('fonts/SFProText-Regular.woff2') format('woff2'),
+        url('fonts/SFProText-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SFProText';
+    src: url('fonts/SFProText-Medium.woff2') format('woff2'),
+        url('fonts/SFProText-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SFProText';
+    src: url('fonts/SFProText-Semibold.woff2') format('woff2'),
+        url('fonts/SFProText-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'SFProText', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F9FA; 
+    color: #212529; 
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    box-sizing: border-box;
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+    border-bottom: 1px solid #E9ECEF;
+}
+
+header a{
+    text-decoration: none;
+    color: inherit;
+}
+
+header h1{
+    font-weight: 600;
+    font-size: 1.5625rem;
+    line-height: 2.375rem;
+    color: #007BFF;
+    text-shadow: none;
+    margin: 0;
+}
+
+/* --- Mobile Navigation Elements (Hidden by default on Desktop) --- */
+#hamburger-icon, #mobile-menu-container {
+    display: none;
+}
+
+header nav li{
+    display: inline;
+    margin-left: 1.875rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    color: #495057; /* màu xám đậm cho liên kết */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 0.5rem; /* Tạo không gian cho gạch chân */
+}
+
+/* Hiệu ứng gạch chân */
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007BFF;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+nav ul li a:hover{
+    color: black;
+}
+
+/* Hiển thị gạch chân khi hover */
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+li a.active{
+    color: #007BFF; /* màu xanh dương chủ đạo cho liên kết đang hoạt động */
+    font-weight: 600;
+}
+
+/* Giữ gạch chân cho link active */
+li a.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.gioi-thieu{
+    position: relative; 
+    height: calc(100vh - 4.5rem); /* calc là để tính toán chiều cao trừ đi header và 100vh là chiều cao viewport, viewport là chiều cao của cửa sổ trình duyệt */
+    display: flex; /* flex để căn giữa nội dung */
+    align-items: center;
+    justify-content: flex-start; /* flex-start để căn lề trái */
+    text-align: left;
+    padding: 0 5%;
+}
+
+.gioi-thieu img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 1; /* đặt opacity để hình nền rõ nét */
+}
+
+.noi-dung-gioi-thieu{
+    width: 60%;
+    z-index: 1;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    left: 18.75%;
+    bottom: 5%;
+    color: white;
+    backdrop-filter: blur(3px);
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.3); /* Màu nền đen với độ mờ để làm nổi bật nội dung */
+}
+
+.gioi-thieu h1{
+    font-family: 'SFProDisplay', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 1.2; 
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gioi-thieu p.desktop-description{
+    font-family: 'SFProText', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.6; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    max-width: 800px; /* Giảm chiều rộng tối đa */
+    margin: 0 auto 2rem; /* Căn giữa và giảm khoảng cách dưới */
+    text-align: center; /* Đảm bảo căn giữa */
+}
+
+/* Ẩn mô tả cho di động trên màn hình lớn theo mặc định */
+.gioi-thieu .mobile-description {
+    display: none;
+}
+
+.nut{
+    margin-top: 1rem; /* Thêm khoảng cách trên cho nút */
+    background-color: #007BFF; /* màu xanh dương chủ đạo cho nút bấm */
+    color: white; 
+    border: none;
+    padding: 0.85rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none; /* Bỏ gạch chân */
+}
+
+.nut:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.tinh-nang {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 5%;
+    flex-wrap: wrap;
+    background-color: white;
+}
+
+.khau-hieu {
+    font-size: 1.875rem;
+    text-align: center;
+    width: 95%;
+    margin-bottom: 2rem;
+}
+.the-tinh-nang {
+    background-color: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 300px;
+    backdrop-filter: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* giải thich: hiệu ứng chuyển đổi mượt mà khi hover, transform là hiệu ứng dịch chuyển, box-shadow là hiệu ứng bóng */
+}
+
+.the-tinh-nang a {
+    text-decoration: none; /* loại bỏ gạch chân */
+    color: inherit; /* kế thừa màu sắc từ thẻ cha */
+    display: block; /* để toàn bộ thẻ a bao phủ thẻ the-tinh-nang */
+}
+
+.the-tinh-nang:hover {
+    transform: translateY(-5px); /* Dịch chuyển lên 5px khi hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.bieu-tuong-tinh-nang {
+    font-size: 1.5rem;
+    color: #007BFF;
+    background-color: rgba(0, 123, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.the-tinh-nang h3 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 1.5rem;
+    color: #212529;
+    margin-bottom: 0.5rem;
+}
+
+.the-tinh-nang p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+.khung-mbti {
+    position: relative;
+    width: 100%;
+    background-color: white;
+    overflow-x: hidden; /* Thêm dòng này để ẩn thanh cuộn ngang */
+}
+
+#hinh-2{
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+    /* margin-left: 7.5rem; Xóa hoặc bình luận dòng này */
+    display: block;
+}
+
+#khau-hieu-mbti{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    width: 42%;
+    max-width: 700px;
+}
+
+#mbti{
+    position: absolute;
+    top: 55%;
+    left: 5%;
+    width: 40%;
+    text-align: left;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 30px;
+}
+
+#anh-mbti{
+    position: absolute;
+    top: -70%;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#mbti p{
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 30px;
+    color: black;
+    text-align: justify;
+    width: 90%;
+    position: relative;
+    bottom: 80px;
+    left: 25px;
+    z-index: 1;
+}
+
+#nut-mbti{
+    margin-left: 8.5rem;
+    margin-top: -1.25rem;
+}
+
+#nut-mbti a{
+    text-decoration: none; /* loại bỏ gạch chân */
+    color: white; 
+    display: block; /* để toàn bộ thẻ a bao phủ thẻ the-tinh-nang */
+}
+
+/* Journey CTA Section */
+.keu-goi-hanh-trinh {
+    background: linear-gradient(45deg, #007BFF, #0056b3);
+    color: white;
+    padding: 5rem 5%;
+    text-align: center;
+}
+.keu-goi-hanh-trinh .khung-chua {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.keu-goi-hanh-trinh h2 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+}
+.keu-goi-hanh-trinh p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+.keu-goi-hanh-trinh .nut {
+    background-color: white;
+    color: #007BFF;
+    font-weight: 700;
+}
+.keu-goi-hanh-trinh .nut:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px);
+}
+#nut-keu-goi a{
+    text-decoration: none; /* loại bỏ gạch chân */
+    color: #007BFF; 
+    display: block; /* để toàn bộ thẻ a bao phủ thẻ the-tinh-nang */
+}
+
+/* Steps Section */
+.cac-buoc {
+    background-color: #FFFFFF;
+    padding: 4rem 5%;
+}
+.cac-buoc .khung-chua {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+.cac-buoc h2 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+.luoi-cac-buoc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    text-align: left;
+}
+.the-buoc {
+    background: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    position: relative;
+}
+.so-buoc {
+    position: absolute;
+    top: -20px;
+    left: 2rem;
+    background-color: #007BFF;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+.the-buoc h3 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Blog Section */
+.blog {
+    padding: 4rem 5%;
+    background-color: #FFFFFF;
+}
+.blog .khung-chua {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.blog h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+.luoi-blog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.bai-viet-blog {
+    background: #F8F9FA;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #E9ECEF;
+}
+.bai-viet-blog:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+.bai-viet-blog img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.bai-viet-blog h4 {
+    padding: 1.5rem 1.5rem 0;
+    color: #007BFF;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.bai-viet-blog h3 {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.25rem;
+}
+.bai-viet-blog a {
+    display: inline-block;
+    padding: 0 1.5rem 1.5rem;
+    font-weight: 600;
+    color: #212529;
+    text-decoration: none; /* Bỏ gạch chân */
+}
+
+/* Footer */
+footer {
+    background-color: #212529;
+    color: #E9ECEF;
+    padding-top: 4rem;
+}
+.luoi-chan-trang {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+}
+.chan-trang-gioi-thieu h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+    margin-left: 1.25rem;
+}
+.chan-trang-gioi-thieu p {
+    color: #ADB5BD;
+    margin-left: 1.25rem;
+    width: 90%;
+}
+.chan-trang-lien-ket h4, .chan-trang-mang-xa-hoi h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+.chan-trang-lien-ket ul {
+    list-style: none;
+    padding: 0;
+}
+.chan-trang-lien-ket ul li a {
+    color: #ADB5BD;
+    text-decoration: none;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+.chan-trang-lien-ket ul li a:hover {
+    color: white;
+}
+.chan-trang-mang-xa-hoi a {
+    color: #ADB5BD;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+.chan-trang-mang-xa-hoi a:hover {
+    color: white;
+}
+.chan-trang-duoi {
+    border-top: 1px solid #343A40;
+    text-align: center;
+    padding: 1.5rem 0;
+    color: #6C757D;
+}
+
+/* responsive design làm cho trang web hiển thị tốt trên các thiết bị khác nhau như máy tính để bàn, máy tính bảng và điện thoại di động */
+@media (max-width: 1024px) {
+    .noi-dung-gioi-thieu {
+        width: 80%;
+    }
+    .gioi-thieu h1 {
+        font-size: 3rem;
+    }
+    #khau-hieu-mbti {
+        width: 90%;
+        padding: 1.5rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: row; /* Keep it row for mobile */
+        justify-content: space-between;
+        padding: 0 1.5rem; /* Tăng padding cho header */
+        width: 100%;
+        border-radius: 0;
+        top: 0;
+        margin: 0;
+    }
+
+    /* --- Hamburger Menu & Mobile Nav --- */
+    #desktop-nav {
+        display: none; /* Ẩn menu desktop */
+    }
+
+    #hamburger-icon {
+        display: block; /* Hiển thị icon hamburger */
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #212529;
+    }
+
+    #mobile-menu-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Ẩn menu bên phải theo mặc định */
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        z-index: 2000;
+        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    #mobile-menu-container.open {
+        right: 0; /* Hiển thị menu khi có class 'open' */
+    }
+
+    #mobile-menu-container ul {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    #mobile-menu-container ul li {
+        margin: 2rem 0;
+    }
+
+    #mobile-menu-container ul li a {
+        color: #212529;
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    #close-icon {
+        position: absolute;
+        top: 1.8rem;
+        right: 1.8rem;
+        font-size: 2rem;
+        color: #212529;
+        cursor: pointer;
+    }
+    /* --- End Mobile Nav --- */
+
+    .hero {
+        padding: 0 5%;
+        text-align: center;
+        justify-content: center;
+        height: auto;
+        min-height: 70vh;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 1.5rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        width: 100%;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tinh-nang {
+        padding: 2rem 5%;
+    }
+
+    /* --- Responsive cho phần giới thiệu (Hero Section) --- */
+    .gioi-thieu {
+        justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+        text-align: center;
+        padding: 0 1rem; /* Thêm padding hai bên */
+        height: 80vh; /* Giảm chiều cao trên di động */
+    }
+
+    .noi-dung-gioi-thieu {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        position: static; /* Bỏ định vị tương đối */
+        padding: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.45); /* Tăng độ mờ nền để chữ dễ đọc hơn */
+    }
+
+    .gioi-thieu h1 {
+        font-size: 2.5rem; /* Giảm kích thước font tiêu đề */
+    }
+
+    .gioi-thieu .desktop-description {
+        display: none; /* Ẩn mô tả dài trên di động */
+    }
+
+    .gioi-thieu .mobile-description {
+        display: block; /* Hiển thị mô tả ngắn trên di động */
+        font-size: 1.1rem; /* Giảm kích thước font mô tả */
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        max-width: 900px;
+        margin-bottom: 2rem;
+    }
+    /* --- Kết thúc responsive cho Hero Section --- */
+
+    /* Responsive cho phần khám phá bản thân */
+    .khung-mbti {
+        padding: 2rem 1rem;
+    }
+
+    #mbti-solgan {
+        position: relative;
+        transform: none;
+        left: auto;
+        top: auto;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 0;
+        margin-top: -5px; /* để hình ảnh và phần nội dung sát nhau */
+    }
+
+    .khung-mbti {
+        background-color: white;
+    }
+
+    .luoi-chan-trang {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Responsive cho phần khám phá bản thân */
+    .khung-mbti {
+        padding: 2rem 1rem;
+    }
+
+    #hinh-2 {
+        display: none; /* Ẩn hình nền lớn trên di động */
+    }
+
+    #khau-hieu-mbti, #mbti {
+        position: static; /* Bỏ position absolute */
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    #khau-hieu-mbti h1 {
+        font-size: 2rem;
+    }
+
+    #mbti {
+        margin-top: 1.5rem;
+    }
+
+    #mbti p {
+        position: static;
+        width: 100%;
+        text-align: center;
+        color: #495057;
+        background-color: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        padding: 0 1rem;
+        box-sizing: border-box;
+    }
+
+    #nut-mbti {
+        margin: 1.5rem 0 0 0;
+    }
+
+    .header-bai-viet h1 {
+        font-size: 2.2rem;
+    }
+    .bai-viet-chi-tiet {
+        padding: 0 1rem;
+    }
+}
+
+/* --- Nganh Nghe Page Specific Styles --- */
+
+.gioi-thieu-trang {
+    position: relative;
+    height: 50vh;
+    background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1000');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.gioi-thieu-trang::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.noi-dung-gioi-thieu-trang {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    padding: 0 2rem;
+}
+
+.noi-dung-gioi-thieu-trang h1 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 3.04rem;
+    margin-bottom: 1rem;
+    
+}
+
+.noi-dung-gioi-thieu-trang p {
+    font-size: 1.2rem;
+    opacity: 0.9; 
+}
+
+.kham-pha-nghe-nghiep {
+    padding: 4rem 5%;
+    background-color: #FFFFFF;
+}
+
+.kham-pha-nghe-nghiep .khung-chua {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.kham-pha-nghe-nghiep h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.luoi-nghe-nghiep {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.the-nghe-nghiep {
+    background: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.the-nghe-nghiep a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.the-nghe-nghiep:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.bieu-tuong-nghe-nghiep {
+    font-size: 2.5rem;
+    color: #007BFF;
+    margin-bottom: 1.5rem;
+}
+
+.the-nghe-nghiep h3 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.the-nghe-nghiep p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+/* --- Ky Nang Page Specific Styles --- */
+
+#ky-nang-hero {
+    background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000');
+}
+
+.kham-pha-ky-nang {
+    padding: 4rem 5%;
+    background-color: #FFFFFF;
+}
+
+.kham-pha-ky-nang .khung-chua {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.kham-pha-ky-nang h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.luoi-ky-nang {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.the-ky-nang {
+    background: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.the-ky-nang:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.bieu-tuong-ky-nang {
+    font-size: 2.5rem;
+    color: #007BFF;
+    margin-bottom: 1.5rem;
+}
+
+.the-ky-nang h3 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.the-ky-nang p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+.ky-nang-noi-bat {
+    padding: 4rem 5%;
+    background-color: #F8F9FA;
+}
+
+.ky-nang-noi-bat .khung-chua {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ky-nang-noi-bat h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.luoi-the-tag {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.the-tag {
+    background-color: #E9ECEF;
+    color: #495057;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.the-tag:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* --- Trac Nghiem Page Specific Styles --- */
+
+#trac-nghiem-hero {
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000');
+}
+
+.kham-pha-trac-nghiem {
+    padding: 4rem 5%;
+    background-color: #FFFFFF;
+}
+
+.kham-pha-trac-nghiem .khung-chua {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.kham-pha-trac-nghiem h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.luoi-trac-nghiem {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.the-trac-nghiem {
+    background: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.the-trac-nghiem:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.bieu-tuong-trac-nghiem {
+    font-size: 2.5rem;
+    color: #007BFF;
+    margin-bottom: 1.5rem;
+}
+
+.the-trac-nghiem h3 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.the-trac-nghiem p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+    flex-grow: 1; /* Makes paragraph take available space */
+    margin-bottom: 2rem;
+}
+
+.the-trac-nghiem .nut {
+    width: 80%;
+}
+
+/* --- Lien He Page Specific Styles --- */
+
+#lien-he-hero {
+    background-image: url('https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1000');
+}
+
+.lien-he-section {
+    padding: 4rem 5%;
+    background-color: #FFFFFF;
+}
+
+.lien-he-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.form-lien-he h2, .thong-tin-lien-he h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    font-family: 'SFProText', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.form-lien-he .nut {
+    width: auto;
+    padding: 0.85rem 2.5rem;
+}
+
+.thong-tin-lien-he p {
+    margin-bottom: 2rem;
+    color: #495057;
+}
+
+.thong-tin-lien-he ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.thong-tin-lien-he ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    color: #495057;
+}
+
+.thong-tin-lien-he ul li i {
+    color: #007BFF;
+    font-size: 1.2rem;
+    margin-top: 4px;
+}
+
+.thong-tin-lien-he .mang-xa-hoi a {
+    color: #495057;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.thong-tin-lien-he .mang-xa-hoi a:hover {
+    color: #007BFF;
+}
+
+@media (max-width: 992px) {
+    .lien-he-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Blog Post Detail Page Styles --- */
+
+.khung-bai-viet {
+    background-color: #FFFFFF;
+    padding-bottom: 4rem;
+}
+
+.bai-viet-chi-tiet {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header-bai-viet {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative; /* Đảm bảo không bị các phần tử khác đè lên */
+    z-index: 1;
+}
+
+.danh-muc-bai-viet {
+    color: #007BFF;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.header-bai-viet h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 0.9;
+}
+
+.meta-bai-viet {
+    color: #6C757D;
+    font-size: 0.9rem;
+}
+
+.anh-dai-dien-wrapper {
+    position: relative;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.anh-dai-dien-wrapper::before {
+    content: ''; 
+    position: absolute;
+    top: -1.5625rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Lớp phủ tối */
+    z-index: 1;
+}
+
+.anh-dai-dien-bai-viet {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    display: block; /* Sửa lỗi khoảng trắng thừa dưới ảnh */
+    position: relative;
+    top: -1.5625rem;
+}
+
+.noi-dung-bai-viet {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #343A40;
+}
+
+.noi-dung-bai-viet .doan-mo-dau {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #212529;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-style: italic;
+    width: 100%;
+    position: relative;
+    top: -3rem;
+}
+
+.noi-dung-bai-viet h2 {
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.noi-dung-bai-viet h3 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Layout helpers & page components added for the redesigned pages */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+}
+
+/* Page hero (small banner used on article / nganh pages) */
+.page-hero {
+    padding: 3rem 0 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid #E9ECEF;
+}
+.page-hero .breadcrumb {
+    font-size: 0.9rem;
+    color: #6C757D;
+    margin-bottom: 0.5rem;
+}
+.page-hero h1 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 1.9rem;
+    margin: 0.25rem 0 0.5rem;
+    color: #212529;
+}
+.page-hero .subtitle {
+    color: #495057;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Content grid: main article + sidebar */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2.5rem;
+    align-items: start;
+    padding: 2rem 0;
+}
+
+/* Article card / intro on nganh pages */
+.intro-article {
+    background: #FFFFFF;
+    border: 1px solid #E9ECEF;
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: #212529;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+}
+.intro-article h2 {
+    margin-top: 1rem;
+    color: #222;
+}
+.intro-article p, .intro-article li {
+    color: #495057;
+    line-height: 1.7;
+}
+
+/* Sidebar */
+.sidebar {
+    position: relative;
+}
+.related-card {
+    background: #FFFFFF;
+    border: 1px solid #E9ECEF;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+}
+.related-card h4 {
+    margin: 0 0 0.75rem;
+    color: #212529;
+}
+.related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.related-list li {
+    margin-bottom: 0.6rem;
+}
+.related-list a {
+    color: #007BFF;
+    text-decoration: none;
+}
+.related-list a:hover {
+    text-decoration: underline;
+}
+
+.btn-tomtat {
+  position: fixed;
+  bottom: 25px;
+  right: 100px;
+  background: linear-gradient(120deg, #2575fc, #6a11cb);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(39,71,217,0.25);
+  cursor: pointer;
+  z-index: 999;
+  transition: 0.3s ease;
+}
+.btn-tomtat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(39,71,217,0.35);
+}
+
+/* Khung pop-up tóm tắt */
+.summary-panel {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  width: 420px;
+  height: 100%;
+  background: #fff;
+  border-left: 2px solid #e5e8f0;
+  box-shadow: -10px 0 25px rgba(0,0,0,0.08);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.4s ease;
+}
+.summary-panel.active {
+  right: 0;
+}
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: linear-gradient(120deg, #1e2640, #2f3f72);
+  color: #fff;
+}
+.summary-header h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+.summary-header span {
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.summary-header span:hover {
+  color: #ffd166;
+}
+.summary-content {
+  padding: 20px;
+  overflow-y: auto;
+  line-height: 1.65;
+  color: #222;
+}
+.summary-content p {
+  margin: 0 0 10px;
+}
+
+/* Tags */
+.tags { margin-top: 1rem; }
+.tags .tag {
+    display: inline-block;
+    background: #E9ECEF;
+    color: #495057;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Article two-column grid for post pages */
+.grid-two-column {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 1.25rem;
+}
+.grid-two-column .main-column { min-width: 0; }
+.grid-two-column .sidebar { position: relative; }
+
+/* Post meta */
+.meta {
+    color: #6C757D;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Breadcrumb small helper */
+.breadcrumb a { color: #6C757D; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* Small visual tweaks */
+.page-hero, .intro-article, .related-card, .post-content {
+    transition: box-shadow 0.25s ease, transform 0.15s ease;
+}
+.intro-article:hover, .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+/* Responsive: stack to single column on smaller screens */
+@media (max-width: 900px) {
+    .content-grid,
+    .grid-two-column {
+        grid-template-columns: 1fr;
+    }
+    .page-hero h1 { font-size: 1.5rem; }
+    .page-hero { padding: 2rem 0; }
+    .container { padding: 0 1rem; }
+    #hamburger-icon { display: block; } /* ensure hamburger visible */
+    #mobile-menu-container { display: none; } /* initial hidden, JS toggles 'open' */
+}
+
+/* Ensure forms and buttons inside contact page look consistent */
+.form-lien-he input, .form-lien-he textarea {
+    background: #FFFFFF;
+}
+.form-lien-he .nut {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Skill posts: unified styling for long and short skill pages */
+.skill-group-post,
+.skill-detail-intro,
+.post-content {
+    background: #FFFFFF;
+    border: 1px solid #E9ECEF;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    color: #212529;
+    margin-bottom: 2rem;
+}
+
+/* Hero image for each skill/article */
+.skill-hero {
+    margin: 0 0 1rem;
+    overflow: hidden;
+    border-radius: 12px;
+    display: block;
+}
+.skill-hero-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Optional caption under the image */
+.skill-hero figcaption {
+    font-size: 0.95rem;
+    color: #6C757D;
+    margin-top: 0.5rem;
+}
+
+/* Layout tweaks for long posts: readable max-width and content spacing */
+.skill-group-post h1 {
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+.skill-group-post h2 {
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+.skill-group-post p,
+.skill-detail-intro p,
+.skill-group-post li {
+    line-height: 1.75;
+    color: #495057;
+}
+
+/* For post pages with two-column layout (article + sidebar) */
+.grid-two-column {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Make sure sidebar cards match look */
+.related-card {
+    background: #FFFFFF;
+    border: 1px solid #E9ECEF;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+/* Tags/buttons inside posts */
+.skill-detail-intro .nut,
+.skill-group-post .nut {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .skill-hero-img { height: 220px; }
+    .grid-two-column { grid-template-columns: 1fr; }
+    .skill-group-post,
+    .skill-detail-intro { padding: 1rem; }
+}

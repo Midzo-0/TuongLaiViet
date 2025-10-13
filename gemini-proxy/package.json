@@ -1,6 +1,4 @@
 {
   "name": "gemini-proxy",
-  "version": "1.0.0",
-  "main": "api/gemini.js",
-  "type": "module"
+  "version": "1.0.0"
 }

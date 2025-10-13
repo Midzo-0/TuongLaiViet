@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Tương Lai Việt</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="https://kit.fontawesome.com/08a6d29fc0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="./index.html">Tương Lai Việt</a></h1>
+        <nav id="desktop-nav">
+            <ul>
+                <li><a href="./index.html">Trang Chủ</a></li>
+                <li><a href="./Nganhnghe.html">Ngành Nghề</a></li>
+                <li><a href="./Kynang.html">Kỹ Năng</a></li>
+                <li><a href="./tracnghiem.html">Trắc Nghiệm</a></li>
+                <li><a class="active" href="./Lienhe.html">Liên Hệ</a></li>
+            </ul>
+        </nav>
+        <div id="hamburger-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <nav id="mobile-menu-container">
+        <div class="close-icon"><i class="fas fa-times"></i></div>
+            <ul class="nav-list">
+                <li><a href="./index.html">Trang Chủ</a></li>
+                <li><a href="./Nganhnghe.html">Ngành Nghề</a></li>
+                <li><a href="./Kynang.html">Kỹ Năng</a></li>
+                <li><a href="./tracnghiem.html">Trắc Nghiệm</a></li>
+                <li><a href="./Lienhe.html">Liên Hệ</a></li>
+            </ul>
+    </nav>
+
+    <section class="gioi-thieu-trang" id="lien-he-hero">
+        <div class="noi-dung-gioi-thieu-trang">
+            <h1>Kết Nối Với Chúng Tôi</h1>
+            <p>Chúng tôi luôn sẵn sàng lắng nghe mọi thắc mắc và góp ý từ bạn.</p>
+        </div>
+    </section>
+
+    <section class="lien-he-section">
+        <div class="khung-chua">
+            <div class="lien-he-grid">
+                <div class="form-lien-he">
+                    <h2>Gửi Lời Nhắn</h2>
+                    <form action="#">
+                        <div class="form-group">
+                            <label for="name">Họ và Tên</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Chủ Đề</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội Dung</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="nut">Gửi Tin Nhắn</button>
+                    </form>
+                </div>
+                <div class="thong-tin-lien-he">
+                    <h2>Thông Tin</h2>
+                    <p>Nếu bạn có bất kỳ câu hỏi nào, đừng ngần ngại liên hệ với chúng tôi qua các kênh dưới đây.</p>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>123 Đường ABC, ABC, TP. Hà Nội</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>hotro@tuonglaiviet.vn</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span>(+84) 123 456 789</span></li>
+                    </ul>
+                    <div class="mang-xa-hoi">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="khung-chua luoi-chan-trang">
+            <div class="chan-trang-gioi-thieu">
+                <h3>Tương Lai Việt</h3>
+                <p>Nền tảng hướng nghiệp toàn diện, giúp bạn khám phá tiềm năng và định hướng tương lai sự nghiệp một cách vững chắc.</p>
+            </div>
+            <div class="chan-trang-lien-ket">
+                <h4>Liên Kết Nhanh</h4>
+                <ul>
+                    <li><a href="./index.html">Trang Chủ</a></li>
+                    <li><a href="./Nganhnghe.html">Ngành Nghề</a></li>
+                    <li><a href="./Kynang.html">Kỹ Năng</a></li>
+                    <li><a href="./tracnghiem.html">Trắc Nghiệm</a></li>
+                </ul>
+            </div>
+            <div class="chan-trang-mang-xa-hoi">
+                <h4>Kết Nối Với Chúng Tôi</h4>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="chan-trang-duoi">
+            <p>&copy; 2024 Tương Lai Việt. Đã đăng ký bản quyền.</p>
+        </div>
+    </footer>
+    <script src="chatbot.js"></script>
+</body>
+</html>
